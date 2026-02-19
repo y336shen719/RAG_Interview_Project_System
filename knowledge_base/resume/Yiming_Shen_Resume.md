@@ -8,189 +8,141 @@ last_updated: 2026-02
 
 # Yiming (Ryan) Shen
 
-Email: y336shen@uwaterloo.ca\
-Location: Toronto, ON, Canada\
-GitHub \| LinkedIn
+Email: y336shen@uwaterloo.ca  
+Location: Toronto, ON, Canada  
+GitHub | LinkedIn
 
-------------------------------------------------------------------------
+---
 
-# Summary of Qualifications
+## 1. Summary
 
-I am a highly motivated individual with strong quantitative skills and a
-deep passion for machine learning and artificial intelligence. My
-academic background and professional experience have equipped me with
-strong technical proficiency in Python, SQL, R, and data visualization
-tools such as Tableau and Power BI.
+Master’s student in Data Science and Artificial Intelligence at the University of Waterloo with strong quantitative background in statistics and machine learning. Experienced in building end-to-end data pipelines, time-series models, and business-facing analytics dashboards.
 
-I have developed in-depth knowledge in statistics, data science, and
-computer science through rigorous academic training. I am particularly
-strong in analytical thinking, problem-solving, and transforming complex
-datasets into actionable business insights.
+Technical strengths include Python, SQL, R, Spark, and BI tools (Power BI, Tableau). Strong in analytical thinking, stakeholder communication, and translating complex data into actionable insights.
 
-------------------------------------------------------------------------
+---
 
-# Education
+## 2. Education
 
-## Master of Data Science and Artificial Intelligence (MDSAI), Co-op
+### Master of Data Science and Artificial Intelligence (MDSAI), Co-op  
+University of Waterloo — Waterloo, ON  
+Sept 2025 – Dec 2026  
+Major GPA: 87% (3.9)
 
-University of Waterloo --- Waterloo, ON\
-Sept 2025 -- Dec 2026
+Relevant Coursework:
+- Neural Networks
+- Large Language Models (LLMs)
+- Natural Language Processing
+- Optimization for Data Science
+- Data Engineering
+- Exploratory Data Analysis
 
--   Major GPA: 87% (3.9)
--   Relevant Coursework:
-    -   Neural Networks
-    -   Large Language Models (LLMs)
-    -   Natural Language Processing
-    -   Optimization for Data Science
-    -   Data Engineering
-    -   Exploratory Data Analysis
+---
 
-------------------------------------------------------------------------
+### Bachelor of Mathematics (Honours Statistics), Minor in Computing, Co-op  
+University of Waterloo — Waterloo, ON  
+Sept 2020 – Apr 2025  
+Major GPA: 90.7% (4.0)  
+Cumulative GPA: 90.2% (4.0)
 
-## Bachelor of Mathematics (Honours Statistics), Minor in Computing, Co-op
+Awards:
+- Excellent Academic Standing (All Terms 2020–2025)
+- President’s Scholarship
 
-University of Waterloo --- Waterloo, ON\
-Sept 2020 -- Apr 2025
+Relevant Coursework:
+- Generalized Linear Models
+- Stochastic Processes
+- Forecasting
+- Experimental Design
+- Data Structures
 
--   Major GPA: 90.7% (4.0)
--   Cumulative GPA: 90.2% (4.0)
--   Awards:
-    -   Excellent Academic Standing (All Terms 2020--2025)
-    -   University of Waterloo President's Scholarship
+---
 
-Relevant Coursework: - Generalized Linear Models - Stochastic
-Processes - Forecasting - Experimental Design - Data Structures
+## 3. Projects
 
-------------------------------------------------------------------------
+### Kaggle – S&P 500 Market Prediction
 
-# Projects
+Developed a time-series ML pipeline to forecast next-day S&P 500 returns and optimize trading strategy performance.
 
-## Kaggle Stock Market Prediction (S&P 500)
+**EDA**
+- Analyzed 100+ financial indicators
+- Conducted correlation and missing-value profiling
+- Applied Hurst exponent analysis to evaluate market persistence
 
-Oct 2025 -- Dec 2025
+**Feature Engineering**
+- Created lag and rolling-window features
+- Implemented leakage-aware wavelet decomposition
+- Preserved strict temporal causality
 
-This project focused on predicting S&P 500 returns using time-series
-modeling techniques.
+**Modeling**
+- Built reproducible scikit-learn pipeline
+- Applied walk-forward validation
+- Trained LightGBM and XGBoost
+- Implemented OOF blending and stacking
 
-### Exploratory Data Analysis
+**Results**
+- Achieved ~0.40 adjusted Sharpe ratio
+- Demonstrated stable behavior during drawdowns
+- Reduced optimistic bias via proper validation
 
--   Conducted comprehensive EDA across 100+ financial features
--   Performed correlation analysis and missing-value profiling
--   Applied Hurst exponent analysis to assess long-term memory in
-    financial time series
+---
 
-### Feature Engineering
+## 4. Work Experience
 
--   Engineered lag and rolling-window time-series features
--   Applied wavelet decomposition to extract multi-scale signals
--   Designed leakage-aware features to preserve temporal causality
+### Analytics Co-op – CIBC (8 Months)  
+Toronto, ON | Jan 2024 – Aug 2024
 
-### Modeling Approach
+Built enterprise analytics dashboards for printer network monitoring.
 
--   Built a reproducible scikit-learn pipeline
--   Implemented walk-forward time-series validation
--   Trained gradient-boosted tree models:
-    -   LightGBM
-    -   XGBoost
--   Applied out-of-fold (OOF) ensembling strategies:
-    -   Blending
-    -   Stacking
+- Developed 3 Power BI dashboards (22 visuals)
+- Created SQL views and data transformation logic
+- Implemented on-premises data gateway
+- Optimized incremental refresh and query folding
+- Collaborated with 20+ engineers
+- Received "Outstanding" rating
 
-### Results
+---
 
--   Achieved approximately 0.40 adjusted Sharpe ratio
--   Demonstrated stable behavior during market drawdowns
--   Improved generalization via careful validation design
+### Data Analyst – Horizn Studios  
+Toronto, ON | May 2023 – Sept 2023
 
-------------------------------------------------------------------------
+- Generated 18 weekly automated reports (Excel VBA)
+- Built Tableau dashboards
+- Conducted correlation analysis in Python
+- Identified usage drivers and delivered business recommendations
 
-# Work Experience
+---
 
-## Analytics Co-op (8 Months)
+### Data Analyst – York Region  
+Newmarket, ON | Sept 2022 – Dec 2022
 
-CIBC --- Toronto, ON\
-Jan 2024 -- Aug 2024
+- Processed 1M+ transportation records using T-SQL
+- Built interactive Power BI dashboards
+- Designed ETL workflow
+- Achieved 500+ weekly dashboard views
+- Supported traffic planning decisions
 
-### Responsibilities
+---
 
--   Developed 3 Power BI dashboards with 22 visuals
--   Provided real-time insights into enterprise printer network
-    performance
--   Built an on-premises data gateway between SQL Server and Power BI
-    Service
--   Ensured secure and efficient data flow for visualization
+## 5. Technical Skills
 
-### Collaboration & Impact
+### Statistics & Modeling
+- Regression
+- Time Series
+- A/B Testing
+- Multivariate Testing
 
--   Collaborated with a 20-person engineering team
--   Clarified business requirements and refined KPIs
--   Ensured security and compliance controls
--   Presented visualization practices to senior leadership
--   Received "Outstanding" rating in final evaluation
+### Programming
+- Python (pandas, NumPy, scikit-learn, PyTorch)
+- R
+- SQL (T-SQL, MySQL)
 
-------------------------------------------------------------------------
+### Data Engineering & BI
+- Spark
+- AWS (learning)
+- Power BI
+- Tableau
+- Power Automate
+- SharePoint
+- Excel
 
-## Data Analyst (4 Months)
-
-Horizn Studios --- Toronto, ON\
-May 2023 -- Sept 2023
-
-### Responsibilities
-
--   Generated 18 weekly automated reports using Excel VBA
--   Analyzed platform usage data (daily visitor counts)
--   Automated reporting workflows using Tableau
-
-### Analytical Work
-
--   Conducted correlation analysis using Python
--   Identified drivers behind platform usage fluctuations
--   Delivered actionable recommendations to Customer Success team
-
-------------------------------------------------------------------------
-
-## Data Analyst (4 Months)
-
-The Regional Municipality of York --- Newmarket, ON\
-Sept 2022 -- Dec 2022
-
-### Responsibilities
-
--   Transformed transportation data (1M+ rows) using T-SQL
--   Built 3 interactive Power BI dashboards
--   Designed drop-down filters and range slicers
-
-### Impact
-
--   Delivered end-to-end ETL pipeline
--   Deployed dashboards to internal government platform
--   Achieved 10+ stakeholder subscriptions
--   Generated 500+ weekly views
--   Supported traffic planning decisions
-
-------------------------------------------------------------------------
-
-# Technical Skills
-
-## Statistical Techniques
-
--   Regression Analysis
--   Time Series Analysis
--   A/B Testing
--   Multivariate Testing
-
-## Data Science & Machine Learning
-
--   Python (pandas, NumPy, Matplotlib, scikit-learn, PyTorch)
--   R
-
-## Data Platforms & BI
-
--   SQL (T-SQL, MySQL)
--   Spark
--   AWS (in progress)
--   Tableau
--   Power BI
--   Power Automate
--   SharePoint
--   Excel
