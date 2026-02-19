@@ -1,3 +1,11 @@
+---
+title: Ontario PM2.5 Forecasting
+category: project
+tags: [time-series, air-quality, LSTM, forecasting]
+priority: high
+last_updated: 2026-02
+---
+
 Executive Report: Next-Day PM2.5 Forecasting for Proactive School
 Decision-Making in Ontario Policy Analytics Division 1 Context This
 analysis was conducted for the Ontario Ministry of Education,
