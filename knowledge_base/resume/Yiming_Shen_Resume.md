@@ -1,3 +1,11 @@
+---
+title: Yiming Shen Resume
+category: resume
+tags: [experience, skills, education]
+priority: high
+last_updated: 2026-02
+---
+
 # Yiming (Ryan) Shen
 
 Email: y336shen@uwaterloo.ca\
