@@ -1,7 +1,7 @@
 ---
-title: Behavioural Interview Answers
-category: interview
-tags: [leadership, conflict, teamwork]
+title: behaviour_2026
+category: interview_bank
+tags: [leadership, conflict, teamwork, problem solving]
 priority: medium
 last_updated: 2026-02
 ---
