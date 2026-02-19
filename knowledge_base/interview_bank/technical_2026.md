@@ -1,3 +1,11 @@
+---
+title: Technical Interview Answers
+category: interview
+tags: [big data, p-value, teamwork, data cleaning, central limit theorem]
+priority: medium
+last_updated: 2026-02
+---
+
 **Technical Problems**
 
 1.  [How to handle big data which is too large to your
