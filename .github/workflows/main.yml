@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -20,22 +20,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
 
-      - name: Run build_chunks script
+      - name: Run chunk builder
         run: |
           python scripts/build_chunks.py
 
-      # ZIP the output
-      - name: Zip chunks.json
-        run: |
-          mkdir output
-          mv chunks.json output/
-          zip -r rag_chunks.zip output/
-
-      # Upload zip artifact
-      - name: Upload zipped artifact
+      - name: Upload chunks.json as artifact
         uses: actions/upload-artifact@v4
         with:
           name: rag-chunks
-          path: rag_chunks.zip
+          path: chunks.json
+          if-no-files-found: error
