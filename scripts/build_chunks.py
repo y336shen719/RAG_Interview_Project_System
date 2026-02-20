@@ -53,55 +53,82 @@ def create_chunk(text, source_type, file_name, extra_meta=None):
 
 # process md files
 def process_file(file_path):
-  text = read_markdown(file_path)
-  file_name = file_path.name
-  folder_name = file_path.parent.name
-  # empty list of chunks
-  chunks = []
-  # for interview bank
-  if folder_name = "interview_bank":
-    sections = split_interview_sections(text)
-    for section in sections:
-      header_match = re.match(r"^### (.*)", section)
-      question_title = header_match.group(1) if header_match else "unknown"
-      chunk = create_chunk(
-        section,
-        source_type = "interview",
-        file_name = file_name,
-        extra_meta = {"question": question_title})
-      if chunk:
-        chunks.append(chunk)
-  # for projects
-  elif folder_name = "projects":
-    sections = split_by_header(text)
-    for section in sections:
-      header_match = re.match(r"^#{1,3} (.*)", section)
-      section_title = header_match.group(2) if header_match else "unknown"
-      chunk = create_chunk(
-        section,
-        source_type = "project",
-        file_name = file_name,
-        extra_meta = {"section": section_title})
-      if chunk:
-        chunks.append(chunk)
-  # for resume
-  elif folder_name = "resume":
-    sections = split_by_header(text)
-    for section in sections:
-      header_match = re.match(r"^#{1,3} (.*)", section)
-      section_title = header_match.group(2) if header_match else "unknown"
-      chunk = create_chunk(
-        section,
-        source_type = "resume",
-        file_name = file_name,
-        extra_meta = {"section": section_title})
-      if chunk:
-        chunks.append(chunk)
-  
-  
+    text = read_markdown(file_path)
+    file_name = file_path.name
+    folder_name = file_path.parent.name
+    chunks = []
+    # Interview Bank
+    if folder_name == "interview_bank":
+        sections = split_interview_sections(text)
+        for section in sections:
+            header_match = re.match(r"^### (.*)", section)  # must start with ### and then (.*) will capture all the question contents after ###
+            question_title = header_match.group(1) if header_match else "unknown" # if there is no match in capture group () then 'unknown'
+            chunk = create_chunk(                                                 # group(0): all content that matched
+                section,                                                          # group(1): the content in first capture group
+                source_type="interview",
+                file_name=file_name,
+                extra_meta={"question": question_title}
+            )
+            if chunk:
+                chunks.append(chunk)
+    # Projects
+    elif folder_name == "projects":
+        sections = split_by_headers(text)
+        for section in sections:
+            header_match = re.match(r"^(#{1,3}) (.*)", section)
+            section_title = header_match.group(2) if header_match else "unknown"  # first capture group is (#{1,3})
+            chunk = create_chunk(                                                 # so second capture group is (.*)
+                section,
+                source_type="project",
+                file_name=file_name,
+                extra_meta={"section": section_title}
+            )
+            if chunk:
+                chunks.append(chunk)
+    # Resume
+    elif folder_name == "resume":
+        sections = split_by_headers(text)
+        for section in sections:
+            header_match = re.match(r"^(#{1,3}) (.*)", section)
+            section_title = header_match.group(2) if header_match else "unknown"
+            chunk = create_chunk(
+                section,
+                source_type="resume",
+                file_name=file_name,
+                extra_meta={"section": section_title}
+            )
+            if chunk:
+                chunks.append(chunk)
+    return chunks
 
+# main code
+def main():
+    all_chunks = []
 
-  
+    for root, dirs, files in os.walk(BASE_DIR):
+        for file in files:
+            if file.endswith(".md"):
+                file_path = Path(root) / file
+                file_chunks = process_file(file_path)
+                all_chunks.extend(file_chunks)  # use extend instead of append
 
-  
+    print("=" * 50)
+    print(f"Total chunks created: {len(all_chunks)}")
+    print("=" * 50)
 
+    type_counts = {}
+    for chunk in all_chunks:
+        t = chunk["metadata"]["source_type"]
+        type_counts[t] = type_counts.get(t, 0) + 1
+
+    print("Chunk distribution:")
+    for k, v in type_counts.items():
+        print(f"  {k}: {v}")
+
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(all_chunks, f, indent=2, ensure_ascii=False)
+
+    print(f"\nSaved to {OUTPUT_FILE}")
+
+if __name__ == "__main__":
+    main()
