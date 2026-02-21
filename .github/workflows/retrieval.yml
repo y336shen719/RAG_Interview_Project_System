@@ -28,17 +28,6 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      # download artifacts produced by build_rag.yml
-      - name: Download chunks artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: rag-chunks
-
-      - name: Download vector store artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: rag-vector-store
-
       - name: Run retrieval test
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
