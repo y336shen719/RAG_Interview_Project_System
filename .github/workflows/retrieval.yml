@@ -1,4 +1,4 @@
-name: Retrieval Test
+name: Retrieval Strategy
 
 on:
   workflow_dispatch:
@@ -6,10 +6,6 @@ on:
       query:
         description: "Enter test query"
         required: true
-      top_k:
-        description: "Number of retrieved chunks"
-        required: true
-        default: "5"
 
 jobs:
   retrieval:
@@ -28,10 +24,9 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Run retrieval test
+      - name: Run retrieval strategy
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          python scripts/retrieval_test.py \
-          "${{ github.event.inputs.query }}" \
-          "${{ github.event.inputs.top_k }}"
+          python scripts/retrieval_strategy.py \
+          "${{ github.event.inputs.query }}"
