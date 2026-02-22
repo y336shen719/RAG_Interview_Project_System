@@ -1,4 +1,4 @@
-name: Build RAG Pipeline
+name: Build RAG Vector Store
 
 on:
   workflow_dispatch:
