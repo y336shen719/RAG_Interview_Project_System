@@ -55,6 +55,7 @@ def retrieve(query: str, index, chunks):
     scores, indices = index.search(qvec, CANDIDATE_K)
 
     results = []
+
     for score, idx in zip(scores[0], indices[0]):
         if idx == -1:
             continue
@@ -63,9 +64,11 @@ def retrieve(query: str, index, chunks):
         meta = chunk.get("metadata", {})
         src_type = meta.get("source_type")
 
+        # Metadata routing
         if category is not None and src_type != category:
             continue
 
+        # Threshold filtering
         if float(score) < THRESHOLD:
             continue
 
@@ -93,9 +96,15 @@ def build_context(results):
         file_name = meta.get("file_name", "unknown")
         tag = meta.get("section") or meta.get("question") or "unknown"
 
-        header = f"[{i}] source_type={src_type} | file={file_name} | tag={tag} | score={r['score']:.4f} | chunk_id={r['chunk_id']}"
-        body = r["content"].strip()
+        header = (
+            f"[{i}] source_type={src_type} | "
+            f"file={file_name} | "
+            f"tag={tag} | "
+            f"score={r['score']:.4f} | "
+            f"chunk_id={r['chunk_id']}"
+        )
 
+        body = r["content"].strip()
         block = header + "\n" + body
 
         if total + len(block) > MAX_CONTEXT_CHARS:
@@ -106,7 +115,7 @@ def build_context(results):
 
     return "\n\n---\n\n".join(parts)
 
-# Prompt Template
+# Prompt Template (English only)
 def build_messages(query: str, context: str):
 
     system = (
@@ -161,19 +170,31 @@ def main():
     retrieved = retrieve(query, index, chunks)
 
     if not retrieved:
-        print("\nNo relevant knowledge found.")
-        print("I do not have enough information in the current knowledge base to answer this question.")
-        return
+        answer = (
+            "I do not have enough information in the current knowledge base "
+            "to answer this question."
+        )
+    else:
+        context = build_context(retrieved)
+        system_msg, user_msg = build_messages(query, context)
 
-    context = build_context(retrieved)
-    system_msg, user_msg = build_messages(query, context)
-
-    print("\nGenerating answer...")
-    answer = generate_answer(system_msg, user_msg)
+        print("\nGenerating answer...")
+        answer = generate_answer(system_msg, user_msg)
 
     print("\n" + "=" * 80)
     print(answer)
     print("=" * 80)
 
+    output_file = "rag_answer.txt"
+
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write("Query:\n")
+        f.write(query + "\n\n")
+        f.write("Answer:\n")
+        f.write(answer)
+
+    print(f"\nSaved answer to {output_file}")
+
+# Entry
 if __name__ == "__main__":
     main()
