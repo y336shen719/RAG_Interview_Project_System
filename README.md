@@ -4,7 +4,7 @@ pipeline designed to answer questions about:
 
 -   Interview questions (tech + behaviour) e.g. How to solve conflict at workplace?
 -   My machine learning projects
--   Resume and background
+-   My Resume and background
 
 ## The deployed demo is available at:
 
