@@ -5,72 +5,53 @@ on:
 
 jobs:
 
-  # ----------------------------
-  # Job 1: Chunking
-  # ----------------------------
   chunking:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python (with pip cache)
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
+      - run: pip install -r requirements.txt
 
       - name: Build chunks
-        run: |
-          python scripts/build_chunks.py
+        run: python -m scripts.build_chunks
 
-      - name: Upload chunks artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: rag-chunks
           path: chunks.json
           if-no-files-found: error
 
 
-  # ----------------------------
-  # Job 2: Embedding + FAISS
-  # ----------------------------
   embedding:
     needs: chunking
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python (with pip cache)
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
+      - run: pip install -r requirements.txt
 
-      - name: Download chunks artifact
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: rag-chunks
 
       - name: Build embeddings + FAISS index
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: |
-          python scripts/build_embeddings.py
+        run: python -m scripts.build_embeddings
 
-      - name: Upload vector store artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: rag-vector-store
           path: |
