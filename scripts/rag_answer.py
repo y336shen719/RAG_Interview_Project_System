@@ -11,10 +11,8 @@ def main():
 
     query = sys.argv[1]
 
-    # Call core RAG engine
-    answer, debug = answer_query(query)
+    answer = answer_query(query)
 
-    # Print to logs
     print("\n" + "=" * 80)
     print("Query:")
     print(query)
