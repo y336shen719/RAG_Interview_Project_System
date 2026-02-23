@@ -56,7 +56,7 @@ The knowledge base is structured into three folders:
 
 All files are written in Markdown format.
 
-Frontmatter metadata blocks (— … —) were removed during chunking to
+Frontmatter metadata blocks were removed during chunking to
 avoid contaminating embeddings with non-semantic information.
 
 ------------------------------------------------------------------------
@@ -94,7 +94,7 @@ search index)
 ### 4) Retrieval Testing (Early Stage)
 
 retrieval_test.py was used to: - Input query - Specify top_k - Print
-similarity scores - Evaluate retrieval quality
+similarity scores to decide thresold - Evaluate retrieval quality
 
 ------------------------------------------------------------------------
 
@@ -118,7 +118,7 @@ calls.
 Two-Stage Strategy:
 
 Stage 1: Metadata-Filtered Search - Route to category - Filter by
-metadata.source_type - Apply threshold >= 0.2 - Return top_k = 3
+metadata.source_type - Apply threshold - Return top_k
 
 Stage 2: Global Fallback If Stage 1 empty: - Run global search - Apply
 threshold - Return top_k
