@@ -1,19 +1,15 @@
 import streamlit as st
 from scripts.rag_core import answer_query
 
-# ---------------------------------------------------
 # Page Config
-# ---------------------------------------------------
 st.set_page_config(
     page_title="Ryan Shen | Private RAG Assistant",
     page_icon="🤖",
     layout="centered"
 )
 
-# ---------------------------------------------------
 # Header
-# ---------------------------------------------------
-st.title("🤖RAG Interview & Project Assistant🤖")
+st.title("RAG Interview & Project Assistant")
 
 st.markdown(
     """
@@ -26,9 +22,7 @@ Feel free to ask questions about my background, technical projects, or work expe
 
 st.divider()
 
-# ---------------------------------------------------
 # Password Gate
-# ---------------------------------------------------
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 
@@ -48,18 +42,14 @@ if not st.session_state.authenticated:
 
     st.stop()
 
-# ---------------------------------------------------
 # Logout Button (Sidebar)
-# ---------------------------------------------------
 with st.sidebar:
     st.markdown("### Session Control")
     if st.button("Logout"):
         st.session_state.authenticated = False
         st.rerun()
 
-# ---------------------------------------------------
 # Main Query UI
-# ---------------------------------------------------
 st.subheader("Ask a Question")
 
 query = st.text_input("Enter your question:")
@@ -85,7 +75,7 @@ if generate:
         st.divider()
         st.markdown(
             """
-If you'd like to connect, you can reach me at:
+If you'd like to have more details, you can reach me at:
 
 - **y336shen@uwaterloo.ca** (University email)  
 - **yimingshen20000719@gmail.com** (Personal email)
