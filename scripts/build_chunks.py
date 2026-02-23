@@ -3,14 +3,22 @@ import re  # used for regular expression
 import json  # used to convert md into json
 from pathlib import Path
 
-BASE_DIR = Path("knowledge_base")
-OUTPUT_FILE = "chunks.json"
+# =============================
+# Project root detection
+# =============================
+# Use file location to ensure stable path resolution
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+BASE_DIR = PROJECT_ROOT / "knowledge_base"
+OUTPUT_FILE = PROJECT_ROOT / "chunks.json"
 
 MIN_CHARS = 100  # min chars in a chunk, prevent too short & meaningless chunks
+
 
 def read_markdown(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
         return f.read()
+
 
 # remove YAML frontmatter
 def remove_frontmatter(text):
@@ -32,7 +40,7 @@ split markdown text based on their headers hierarchy (# , ## , ### )
 keep header to its content
     '''
     sections = re.split(
-        r"(?=^#{1,3} )",
+        r"(?=^#{1,6} )",  # support up to ######
         text,
         flags=re.MULTILINE
     )  # ?= :lookahead, keep header to its content
@@ -130,7 +138,7 @@ def process_file(file_path):
         sections = split_by_headers(text)
 
         for section in sections:
-            header_match = re.match(r"^(#{1,3}) (.+)", section)
+            header_match = re.match(r"^(#{1,6}) (.+)", section)
             section_title = header_match.group(2).strip() if header_match else "unknown"
 
             chunk = create_chunk(
@@ -148,7 +156,7 @@ def process_file(file_path):
         sections = split_by_headers(text)
 
         for section in sections:
-            header_match = re.match(r"^(#{1,3}) (.+)", section)
+            header_match = re.match(r"^(#{1,6}) (.+)", section)
             section_title = header_match.group(2).strip() if header_match else "unknown"
 
             chunk = create_chunk(
@@ -168,12 +176,10 @@ def process_file(file_path):
 def main():
     all_chunks = []
 
-    for root, dirs, files in os.walk(BASE_DIR):
-        for file in files:
-            if file.endswith(".md"):
-                file_path = Path(root) / file
-                file_chunks = process_file(file_path)
-                all_chunks.extend(file_chunks)  # use extend instead of append
+    # use pathlib rglob for cleaner traversal
+    for file_path in BASE_DIR.rglob("*.md"):
+        file_chunks = process_file(file_path)
+        all_chunks.extend(file_chunks)  # use extend instead of append
 
     print("=" * 50)
     print(f"Total chunks created: {len(all_chunks)}")
