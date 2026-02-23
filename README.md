@@ -1,10 +1,9 @@
-# RAG Interview & Project Assistant
-
+# RAG Interview & Project Pipeline
 This project implements a full Retrieval-Augmented Generation (RAG)
 pipeline designed to answer questions about:
 
--   Interview experiences
--   Machine learning projects
+-   Interview questions (tech + behaviour) e.g. How to solve conflict at workplace?
+-   My machine learning projects
 -   Resume and background
 
 ------------------------------------------------------------------------
