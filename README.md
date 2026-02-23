@@ -145,5 +145,15 @@ answers.
 
 ## Conclusion
 
-This project implements a Classic RAG System. It is modular and can be
-extended into a full Agent architecture.
+This project demonstrates a production-oriented, retrieval-augmented interview assistant built on a structured personal knowledge base.
+
+The end-to-end classic RAG pipeline is able to deliver concise, context-grounded answers to interview-style questions in real time.
+
+The deployed demo is available at:
+
+Live Demo:
+https://raginterviewagent-hk6j7dvsqdbjxwaek5ptkc.streamlit.app/
+
+For security and controlled access, the application is password-protected.
+
+If you are interested in trying the system, please feel free to contact me directly to request access credentials.
