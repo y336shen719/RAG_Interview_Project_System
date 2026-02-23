@@ -152,7 +152,8 @@ The end-to-end classic RAG pipeline is able to deliver concise, context-grounded
 The deployed demo is available at:
 
 Live Demo:
-https://raginterviewagent-hk6j7dvsqdbjxwaek5ptkc.streamlit.app/
+
+https://ryan-shen-rag-based-interview-assistant.streamlit.app/
 
 For security and controlled access, the application is password-protected.
 
