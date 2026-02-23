@@ -149,13 +149,11 @@ answers.
 -   Vector semantic retrieval
 -   Metadata routing
 -   Rule-based + semantic classification
--   Threshold filtering (0.2)
--   Top-k control (k=3)
+-   Threshold filtering
+-   Top-k control
 -   Two-stage fallback retrieval
--   Context length control
 -   LLM generation with guardrails
--   Streamlit deployment
--   GitHub Actions integration
+-   Clond deployment + Interactive UI
 
 ------------------------------------------------------------------------
 
