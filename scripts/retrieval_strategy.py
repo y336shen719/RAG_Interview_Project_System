@@ -4,11 +4,15 @@ import json
 import numpy as np
 import faiss
 from openai import OpenAI
-from query_classifier import classify_query
+from pathlib import Path
+from scripts.query_classifier import classify_query
 
 # Configuration
-CHUNK_FILE = "vector_store/chunks.json"
-INDEX_FILE = "vector_store/faiss.index"
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+VECTOR_STORE_DIR = PROJECT_ROOT / "vector_store"
+
+CHUNK_FILE = VECTOR_STORE_DIR / "chunks.json"
+INDEX_FILE = VECTOR_STORE_DIR / "faiss.index"
 MODEL = "text-embedding-3-small"
 
 TOP_K = 3
@@ -16,11 +20,16 @@ THRESHOLD = 0.25
 CANDIDATE_K = 10  # retrieve 10 first, then filter down to only 3
 
 # Initialize OpenAI client
-api_key = os.getenv("OPENAI_API_KEY")
-if not api_key:
-    raise ValueError("OPENAI_API_KEY not set.")
+_client = None
 
-client = OpenAI(api_key=api_key)
+def get_client():
+    global _client
+    if _client is None:
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            raise ValueError("OPENAI_API_KEY not set.")
+        _client = OpenAI(api_key=api_key)
+    return _client
 
 # Load chunks
 def load_chunks():
@@ -29,10 +38,12 @@ def load_chunks():
 
 # Load FAISS index
 def load_index():
-    return faiss.read_index(INDEX_FILE)
+    return faiss.read_index(str(INDEX_FILE))
 
 # Generate query embedding
 def embed_query(query: str) -> np.ndarray:
+    client = get_client()
+
     response = client.embeddings.create(
         model=MODEL,
         input=query
@@ -92,7 +103,7 @@ def retrieve(query: str, index, chunks):
 # Main
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python scripts/retrieval_strategy.py \"your query\"")
+        print("Usage: python -m scripts.retrieval_strategy \"your query\"")
         sys.exit(1)
 
     query = sys.argv[1]
