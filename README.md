@@ -132,6 +132,8 @@ rag_core.py: retrieve → build_context → generate_answer
 > [!NOTE]
 > OpenAI gpt-4o-mini used
 
+In this project, we set temperature = 0 to ensure the system produces deterministic, stable, and context-grounded answers.
+
 rag_answer.py: Writes output to rag_answer.txt for GitHub Actions
 artifact upload.
 
